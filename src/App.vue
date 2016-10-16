@@ -6,15 +6,37 @@ div.app
   div.top-bar(v-if="$route.path=='/manage'")
     div.to-index
       a(v-link="{name:'index'}") 主页
-
+  div.top-bar.logout(v-if="$route.path!='/login'&&$route.path!='/register'",@click="logOut")
+    div.logout
+      a 登出
   div.title
   router-view.router()
 </template>
 
 <script>
+  import axios from 'axios'
+  import $cookie from 'vue-cookie'
 
 export default {
-
+  methods:{
+    logOut(){
+      axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
+      axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
+      axios.get('http://121.201.13.36/sitelist/',{
+        token:$cookie.get("token")
+      })
+        .then(function (response) {
+          var result = response.data;
+          $cookie.delete("token")
+          window.location='#!/login';
+        })
+        .catch(function (error) {
+          console.log(error);
+          $cookie.delete("token")
+          window.location='#!/';
+        });
+    }
+  }
 }
 </script>
 
@@ -26,6 +48,7 @@ export default {
     margin: 0;
     padding: 0;
     list-style: none;
+    box-sizing: border-box;
   }
 
   a{
@@ -50,6 +73,7 @@ body {
 
   .top-bar{
     background-color: ghostwhite;
+    cursor: pointer;
     text-shadow: 0 0 10px rgba(0,0,0,0.3);
     font-weight: bolder;
     width: 100px;
@@ -68,6 +92,11 @@ body {
     &:hover{
       opacity: 1;
     }
+  }
+
+  .logout{
+    top:0;
+    right: 150px;
   }
 
   .router{

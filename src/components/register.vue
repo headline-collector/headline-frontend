@@ -49,7 +49,7 @@ export default {
         alert("两次输入密码不一致");
         return false
       }
-      axios.post('http://10.221.64.248:3000/signup',{
+      axios.post('http://121.201.13.36/signup',{
         name:form.u.value,
         password:form.p.value
       })

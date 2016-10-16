@@ -21,7 +21,7 @@ export default {
       var form=document.getElementsByTagName('form')[0];
       axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
       axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
-      axios.post('http://10.221.64.248:3000/login',{
+      axios.post('http://121.201.13.36/login',{
         name:form.u.value,
         password:form.p.value
       })

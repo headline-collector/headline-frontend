@@ -23,7 +23,7 @@ export default {
     var _this=this;
     axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
     axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
-    axios.post('http://10.221.64.248:3000/watchlist/',{
+    axios.post('http://121.201.13.36/watchlist/',{
       token:$cookie.get("token")
     })
       .then(function (response) {
@@ -36,7 +36,7 @@ export default {
 
     axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
     axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
-    axios.get('http://10.221.64.248:3000/sitelist/',{
+    axios.get('http://121.201.13.36/sitelist/',{
       token:$cookie.get("token")
     })
       .then(function (response) {
@@ -61,7 +61,7 @@ export default {
       axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
       axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
       console.log(event.target.getAttribute("item-id"));
-      axios.post('http://10.221.64.248:3000/unwatch/'+event.target.getAttribute("item-id"),{
+      axios.post('http://121.201.13.36/unwatch/'+event.target.getAttribute("item-id"),{
         token:$cookie.get("token")
       })
         .then(function (response) {
@@ -77,7 +77,7 @@ export default {
       axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
       axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
       console.log(event.target.getAttribute("item-id"));
-      axios.post('http://10.221.64.248:3000/watch/'+event.target.getAttribute("item-id"),{
+      axios.post('http://121.201.13.36/watch/'+event.target.getAttribute("item-id"),{
         token:$cookie.get("token")
       })
         .then(function (response) {

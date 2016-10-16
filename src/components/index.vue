@@ -1,11 +1,12 @@
 <template lang="pug">
 ul.index
   h1 WebSite Headline
+  img.logo(src="../assets/logo.png")
   div.cl
     div
-      h3(@click="datePlus") +
+      h3(@click="datePlus") Next Day
       h2#time {{date.toISOString().slice(0,10)}}
-      h3(@click="dateMinus") -
+      h3(@click="dateMinus") Last Day
   li.page-container(v-for="page in headlines")
     div.page-title(id="{{page.site}}")
       | {{page.site}}
@@ -31,7 +32,7 @@ export default {
     axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
     axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
     var date = new Date();
-    axios.post('http://10.221.64.248:3000/dailyHeadlines/'+date.toISOString().slice(0,10),{
+    axios.post('http://121.201.13.36/dailyHeadlines/'+date.toISOString().slice(0,10),{
       token:$cookie.get("token")
     })
       .then(function (response) {
@@ -79,7 +80,7 @@ export default {
       var result;
       axios.defaults.headers.common['Access-Control-Allow-Origin']="*";
       axios.defaults.headers.common["Content-Type"]="application/x-www-form-urlencoded";
-      axios.post('http://10.221.64.248:3000/dailyHeadlines/'+date.toISOString().slice(0,10),{
+      axios.post('http://121.201.13.36/dailyHeadlines/'+date.toISOString().slice(0,10),{
         token:$cookie.get("token")
       })
         .then(function (response) {
@@ -104,6 +105,7 @@ export default {
 
 h3{
   cursor: pointer;
+  color: #091220;
 }
 
 .index h1,h2,h3 { color: black; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; margin-bottom: 20px}
@@ -144,7 +146,7 @@ h3{
   .page-guide{
     position: fixed;
     left: 40px;
-    top: 20px;
+    top: 150px;
     cursor: pointer;
     opacity: 0.95;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -184,10 +186,10 @@ h3{
   .guide-title{
     background-color: rgba(185, 185, 185, 0.5);
     margin: 0 auto;
-    width: auto;
     text-align: center;
     height: 20px;
     line-height: 20px;
+    width: 108px;
     color: black;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
@@ -195,7 +197,16 @@ h3{
   }
 
   .guide-item{
-    height: 35px;
+    height: auto;
+    min-width: 108px;
     line-height: 35px;
+  }
+
+  img.logo{
+    width: 128px;
+    height: 128px;
+    position: fixed;
+    left: 40px;
+    top: 10px;
   }
 </style>
